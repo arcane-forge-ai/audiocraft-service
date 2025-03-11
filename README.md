@@ -1,3 +1,59 @@
+# Audiocraft Service
+
+This service provides a FastAPI wrapper around Facebook's AudioCraft models for music generation. It exposes endpoints for generating music from text prompts and melodies.
+
+## Features
+
+- Text-to-music generation using MusicGen models
+- Support for melody-conditioned generation 
+- Multiple model size options (small, medium, large)
+- Stereo and mono output options
+- Optional MultiBand Diffusion decoder
+- Azure Blob Storage integration for output files
+- Configurable generation parameters (temperature, top-k, top-p, etc.)
+
+## API Endpoints
+
+### POST /generate
+Generate music from a text prompt and optional melody.
+
+Parameters:
+- `prompt` (str): Text description of the desired music
+- `model` (str): MusicGen model to use
+- `decoder` (str, optional): "MultiBand_Diffusion" or default. Default: "MultiBand_Diffusion"
+- `melody` (str, optional): Path to melody audio file
+- `duration` (int, optional): Duration in seconds. Default: 10
+- `topk` (int, optional): Top-k sampling parameter. Default: 250
+- `topp` (float, optional): Top-p sampling parameter. Default: 0
+- `temperature` (float, optional): Sampling temperature. Default: 1.0
+- `cfg_coef` (float, optional): Classifier-free guidance coefficient. Default: 3.0
+- `user_id` (str, optional): User identifier for output path
+
+Returns paths to generated audio files in Azure Blob Storage.
+
+### GET /models
+List available MusicGen models.
+
+Returns list of model IDs that can be used with the generate endpoint.
+
+## Running the Service
+
+### Prerequisites
+- Python 3.9+
+- PyTorch 2.1.0 (MUST)
+- CUDA-capable GPU (recommended), be sure to follow [this link](https://pytorch.org/get-started/previous-versions/#linux-and-windows-22) for installation
+- FastAPI stuffs (tried my best to put everything under [fastapi_requirements.txt](./fastapi_requirements.txt))
+- Azure Blob Storage account and credentials
+
+### Run
+```shell
+cd service && python main.py
+```
+
+---
+
+# Below contains original AudioCraft Readme
+
 # AudioCraft
 ![docs badge](https://github.com/facebookresearch/audiocraft/workflows/audiocraft_docs/badge.svg)
 ![linter badge](https://github.com/facebookresearch/audiocraft/workflows/audiocraft_linter/badge.svg)

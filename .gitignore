@@ -60,3 +60,6 @@ dataset/*
 /notebooks
 /local_scripts
 /notes
+
+# temp files
+tmp/

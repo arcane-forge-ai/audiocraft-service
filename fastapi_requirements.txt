@@ -1,0 +1,10 @@
+azure-storage-blob==12.22.0
+azure-identity==1.17.1
+colorlog==6.8.2
+fastapi==0.112.0
+fastapi-cli==0.0.5
+pydantic-settings==2.4.0
+pytest==8.3.2
+pytest-asyncio==0.23.8
+pytest-mock==3.14.0
+requests==2.32.3
